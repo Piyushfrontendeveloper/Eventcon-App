@@ -119,7 +119,7 @@ export default function Login() {
       return;
     }
     try {
-        const response = await fetch('https://eventcon-app.onrender.com/api/auth/register', {
+        const response = await fetch(`${process.env.REACT_APP_PRODUCTION_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

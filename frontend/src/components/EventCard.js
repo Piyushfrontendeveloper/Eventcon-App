@@ -14,7 +14,7 @@ const EventCard = ({ event, userId }) => {
         // Check if the user has already registered for the event
         const checkEventRegistration = async () => {
             try {
-                const response = await axios.get(`https://eventcon-app.onrender.com/api/auth/${userId}`);
+                const response = await axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/auth/${userId}`);
                 if (response.status === 200) {
                     const userData = response.data;
                     const registeredEventsIds = userData?.eventsRegistered?.map(e => e.eventId);
@@ -38,7 +38,7 @@ const EventCard = ({ event, userId }) => {
         try {
             const stripe = await stripePromise;
             const eventId = event?._id;
-            const response = await axios.post('https://eventcon-app.onrender.com/api/events/create-checkout-session', {
+            const response = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/events/create-checkout-session`, {
                 eventId,
                 userId,
             });
@@ -80,9 +80,9 @@ const EventCard = ({ event, userId }) => {
                     <Typography variant="subtitle1" color="text.secondary">
                         Location: {event.eventLocation}
                     </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" sx={{display:"flex",alignItems:"center",gap:"5px"}}>
+                    {/* <Typography variant="subtitle1" color="text.secondary" sx={{display:"flex",alignItems:"center",gap:"5px"}}>
                         Registered by: {event.purchasedCount} <GroupIcon />
-                    </Typography>
+                    </Typography> */}
                     <Typography variant="body2" color="text.secondary" sx={{ marginTop: '8px', lineHeight: '1.2', maxHeight: '60px', overflow: 'hidden' }}>
                         {event.description}
                     </Typography>

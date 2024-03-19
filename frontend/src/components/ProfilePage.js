@@ -17,7 +17,7 @@ const ProfilePage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://eventcon-app.onrender.com/api/courses?page=${page}&pageSize=${pageSize}`
+          `${process.env.REACT_APP_PRODUCTION_URL}/api/courses?page=${page}&pageSize=${pageSize}`
         );
         setRegisteredCourses(response.data);
       } catch (error) {
@@ -36,7 +36,7 @@ const ProfilePage = () => {
   };
   useEffect(() => {
     // Fetch purchased courses
-    axios.get('https://eventcon-app.onrender.com/api/profile/purchased-courses', {
+    axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/profile/purchased-courses`, {
       headers: {
         'x-auth-token': localStorage.getItem('token') // Assuming token is stored in localStorage
       }
@@ -49,7 +49,7 @@ const ProfilePage = () => {
     });
 
     // Fetch registered events
-    axios.get('https://eventcon-app.onrender.com/api/profile/registered-events', {
+    axios.get(`${process.env.REACT_APP_PRODUCTION_URL}/api/profile/registered-events`, {
       headers: {
         'x-auth-token': localStorage.getItem('token') // Assuming token is stored in localStorage
       }
@@ -65,7 +65,6 @@ const ProfilePage = () => {
   return (
     <div>
       <ButtonAppBar />
-      <h2>User Name</h2>
       <Tabs value={selectedTab} onChange={handleTabChange} centered sx={{marginBottom:"2rem"}}>
         <Tab label="Registered courses" value="courses" />
         <Tab label="Registered events" value="events" />

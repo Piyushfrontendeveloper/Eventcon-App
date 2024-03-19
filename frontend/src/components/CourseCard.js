@@ -22,7 +22,7 @@ const CourseCard = ({ course, userId }) => {
     const checkCoursePurchased = async () => {
       try {
         const response = await axios.get(
-          `https://eventcon-app.onrender.com/api/auth/${userId}`
+          `${process.env.REACT_APP_PRODUCTION_URL}/api/auth/${userId}`
         );
         if (response.status === 200) {
           const userData = response.data;
@@ -53,7 +53,7 @@ const CourseCard = ({ course, userId }) => {
       const stripe = await stripePromise;
       const courseId = course?._id;
       const response = await axios.post(
-        "https://eventcon-app.onrender.com/api/courses/create-checkout-session",
+        `${process.env.REACT_APP_PRODUCTION_URL}/api/courses/create-checkout-session`,
         {
           courseId,
           userId,
