@@ -150,6 +150,7 @@ export default function Login() {
   return (
     <div style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",height:"100vh"}}>
     <div style={{width:"320px",padding:"16px",boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+      <h2>Register</h2>
       <div>
         <label>
           <input

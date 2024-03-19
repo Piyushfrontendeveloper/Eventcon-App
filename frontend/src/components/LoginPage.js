@@ -12,6 +12,7 @@ import {
   Checkbox,
   Alert,
   Stack,
+  CircularProgress // Added loader
 } from "@mui/material";
 import { Link, useNavigate } from 'react-router-dom';
 // Material UI Icon Imports
@@ -40,6 +41,9 @@ export default function Login() {
   // Overall Form Validity
   const [formValid, setFormValid] = useState();
   const [success, setSuccess] = useState();
+
+  // Loader state
+  const [loading, setLoading] = useState(false); // Added loader state
 
   // Handles Display and Hide Password
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -78,11 +82,14 @@ export default function Login() {
   //handle Submittion
   const handleSubmit = async () => {
     setSuccess(null);
+    setLoading(true); // Show loader
+
     //First of all Check for Errors
 
     // If Email error is true
     if (emailError || !emailInput) {
       setFormValid("Email is Invalid. Please Re-Enter");
+      setLoading(false); // Hide loader
       return;
     }
 
@@ -91,6 +98,7 @@ export default function Login() {
       setFormValid(
         "Password is set btw 5 - 20 characters long. Please Re-Enter"
       );
+      setLoading(false); // Hide loader
       return;
     }
     try {
@@ -120,12 +128,9 @@ export default function Login() {
     } catch (error) {
         console.error('Error during login:', error);
         setErrorMessage('An error occurred during login. Please try again later.');
+    } finally {
+      setLoading(false); // Hide loader
     }
-
-
-
-
-
 
     // Proceed to use the information passed
     console.log("Email : " + emailInput);
@@ -139,6 +144,7 @@ export default function Login() {
   return (
     <div style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",height:"100vh"}}>
     <div style={{width:"320px",padding:"16px",boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+     <h3>Login</h3>
       <div style={{ marginTop: "5px" }}>
         <TextField
           label="Email Address"
@@ -226,6 +232,9 @@ export default function Login() {
         </Stack>
       )}
 
+      {/* Show loader */}
+      {loading && <CircularProgress sx={{ marginTop: "10px" }} />}
+      
       <div style={{ marginTop: "7px", fontSize: "10px" }} margin="left">
         <a>Forgot Password</a>
         <br />
@@ -238,3 +247,4 @@ export default function Login() {
     </div>
   );
 }
+

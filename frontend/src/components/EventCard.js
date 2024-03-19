@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
+import GroupIcon from "@mui/icons-material/Group";
 
 const stripePromise = loadStripe(process.env.REACT_APP_EVENT_STRIPE_KEY);
 
@@ -78,6 +79,9 @@ const EventCard = ({ event, userId }) => {
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary">
                         Location: {event.eventLocation}
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" sx={{display:"flex",alignItems:"center",gap:"5px"}}>
+                        Registered by: {event.purchasedCount} <GroupIcon />
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ marginTop: '8px', lineHeight: '1.2', maxHeight: '60px', overflow: 'hidden' }}>
                         {event.description}

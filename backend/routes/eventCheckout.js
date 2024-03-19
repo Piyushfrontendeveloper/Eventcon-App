@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.EVENTS_STRIPE_SECRET_KEY);
@@ -44,6 +43,7 @@ router.post('/create-checkout-session', async (req, res) => {
                 }
             }
         });
+        console.log('User updated with registered event');
 
         // Update the event document with registrant details and increase registeredCount
         await Event.findByIdAndUpdate(eventId, {
@@ -54,6 +54,7 @@ router.post('/create-checkout-session', async (req, res) => {
             },
             $inc: { registeredCount: 1 }
         });
+        console.log('Event updated with registrant details');
 
         // Send the session ID to the client to redirect to the checkout page
         res.status(200).json({ sessionId: session.id });

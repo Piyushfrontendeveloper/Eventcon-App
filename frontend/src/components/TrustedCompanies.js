@@ -1,6 +1,10 @@
 import React from 'react'
 import { Box,Typography } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 const TrustedCompanies = () => {
+  const matches = useMediaQuery('(min-width:600px)');
+  
   return (
     <Box  
           sx={{
@@ -20,7 +24,10 @@ const TrustedCompanies = () => {
             sx={{
               margin: "2rem",
               display: "flex",
-              justifyContent: "space-between",
+              alignItems:"center",
+              gap:"2rem",
+              justifyContent: matches?"space-between":"center",
+              flexDirection:matches?"row":"column",
               flexWrap: "wrap",
             }}
           >
@@ -213,7 +220,10 @@ const TrustedCompanies = () => {
               margin: "2rem",
               marginBottom: "0",
               display: "flex",
-              justifyContent: "space-between",
+              alignItems:"center",
+              gap:"2rem",
+              justifyContent: matches?"space-between":"center",
+              flexDirection:matches?"row":"column",
               flexWrap: "wrap",
             }}
           >
