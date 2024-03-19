@@ -13,7 +13,7 @@ const EventCard = ({ event, userId }) => {
         // Check if the user has already registered for the event
         const checkEventRegistration = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/auth/${userId}`);
+                const response = await axios.get(`https://eventcon-app.onrender.com/api/auth/${userId}`);
                 if (response.status === 200) {
                     const userData = response.data;
                     const registeredEventsIds = userData?.eventsRegistered?.map(e => e.eventId);
@@ -37,7 +37,7 @@ const EventCard = ({ event, userId }) => {
         try {
             const stripe = await stripePromise;
             const eventId = event?._id;
-            const response = await axios.post('http://localhost:5000/api/events/create-checkout-session', {
+            const response = await axios.post('https://eventcon-app.onrender.com/api/events/create-checkout-session', {
                 eventId,
                 userId,
             });

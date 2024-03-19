@@ -37,7 +37,7 @@ const DashboardPage = () => {
   };
   const fetchCourses = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/courses/");
+      const response = await fetch("https://eventcon-app.onrender.com/api/courses/");
       if (response.ok) {
         const data = await response.json();
         setCourses(data);
@@ -51,7 +51,7 @@ const DashboardPage = () => {
   };
   const fetchEvents = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/events/");
+      const response = await fetch("https://eventcon-app.onrender.com/api/events/");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -66,7 +66,7 @@ const DashboardPage = () => {
   const fetchCourseStats = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/courses/sales/stats"
+        "https://eventcon-app.onrender.com/api/courses/sales/stats"
       );
       if (response.ok) {
         const data = await response.json();
@@ -81,7 +81,7 @@ const DashboardPage = () => {
   const fetchEventStats = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/events/registration/stats"
+        "https://eventcon-app.onrender.com/api/events/registration/stats"
       );
       if (response.ok) {
         const data = await response.json();
@@ -114,7 +114,7 @@ const DashboardPage = () => {
   const onEventDelete = async (eventId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/events/${eventId}`,
+        `https://eventcon-app.onrender.com/api/events/${eventId}`,
         {
           method: "DELETE",
         }
@@ -132,7 +132,7 @@ const DashboardPage = () => {
   const onCourseDelete = async (courseId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/courses/${courseId}`,
+        `https://eventcon-app.onrender.com/api/courses/${courseId}`,
         {
           method: "DELETE",
         }
@@ -175,9 +175,9 @@ const DashboardPage = () => {
       let method;
 
       if (selectedTab === "courses") {
-        url = "http://localhost:5000/api/courses/";
+        url = "https://eventcon-app.onrender.com/api/courses/";
       } else {
-        url = "http://localhost:5000/api/events/";
+        url = "https://eventcon-app.onrender.com/api/events/";
       }
 
       if (modalType === "edit") {

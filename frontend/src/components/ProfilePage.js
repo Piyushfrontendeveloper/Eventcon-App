@@ -17,7 +17,7 @@ const ProfilePage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/courses?page=${page}&pageSize=${pageSize}`
+          `https://eventcon-app.onrender.com/api/courses?page=${page}&pageSize=${pageSize}`
         );
         setRegisteredCourses(response.data);
       } catch (error) {
@@ -36,7 +36,7 @@ const ProfilePage = () => {
   };
   useEffect(() => {
     // Fetch purchased courses
-    axios.get('http://localhost:5000/api/profile/purchased-courses', {
+    axios.get('https://eventcon-app.onrender.com/api/profile/purchased-courses', {
       headers: {
         'x-auth-token': localStorage.getItem('token') // Assuming token is stored in localStorage
       }
@@ -49,7 +49,7 @@ const ProfilePage = () => {
     });
 
     // Fetch registered events
-    axios.get('http://localhost:5000/api/profile/registered-events', {
+    axios.get('https://eventcon-app.onrender.com/api/profile/registered-events', {
       headers: {
         'x-auth-token': localStorage.getItem('token') // Assuming token is stored in localStorage
       }

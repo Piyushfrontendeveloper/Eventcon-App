@@ -13,7 +13,7 @@ const CourseCard = ({ course, userId }) => {
     useEffect(() => {
         const checkCoursePurchased = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/auth/${userId}`);
+                const response = await axios.get(`https://eventcon-app.onrender.com/api/auth/${userId}`);
                 if (response.status === 200) {
                     const userData = response.data;
                     const purchasedCoursesIds = userData?.coursePurchased?.map(p => p.courseId);
@@ -40,7 +40,7 @@ const CourseCard = ({ course, userId }) => {
         try {
             const stripe = await stripePromise;
             const courseId = course?._id;
-            const response = await axios.post('http://localhost:5000/api/courses/create-checkout-session', {
+            const response = await axios.post('https://eventcon-app.onrender.com/api/courses/create-checkout-session', {
                 courseId,
                 userId,
             });

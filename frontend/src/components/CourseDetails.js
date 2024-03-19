@@ -32,7 +32,7 @@ const CourseDetails = () => {
     if (userid) {
       // Check if the course is already purchased by the user
       axios
-        .get(`http://localhost:5000/api/auth/${userid}`)
+        .get(`https://eventcon-app.onrender.com/api/auth/${userid}`)
         .then((response) => {
           const userData = response.data;
           const purchasedCoursesIds = userData.coursePurchased.map(
@@ -52,7 +52,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     // Fetch course details based on the ID from the API
-    fetch(`http://localhost:5000/api/courses/${id}`)
+    fetch(`https://eventcon-app.onrender.com/api/courses/${id}`)
       .then((response) => response.json())
       .then((data) => setCourse(data))
       .catch((error) => console.error("Error fetching course details:", error));
@@ -68,7 +68,7 @@ const CourseDetails = () => {
       const stripe = await stripePromise;
       const courseId = course?._id;
       const response = await axios.post(
-        "http://localhost:5000/api/courses/create-checkout-session",
+        "https://eventcon-app.onrender.com/api/courses/create-checkout-session",
         {
           courseId,
           userId,
